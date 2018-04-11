@@ -9,6 +9,21 @@ $('#sizePicker').submit( function(event) {
     makeGrid(height, width);
 })
 
+$('#canvasPicker input').on('change', function() {
+  
+  if($('input[name=canvasSize]:checked','#canvasPicker').val() == 'S'){
+    height = $('#inputHeight').val();
+    width = $('#inputWidth').val();
+    makeGrid(height, width);
+  } else if($('input[name=canvasSize]:checked','#canvasPicker').val() == 'M'){
+    height = $('#inputHeight').val() * 2;
+    width = $('#inputWidth').val() * 2;
+    makeGrid(height, width);
+  }
+  
+  
+});
+
 
 function makeGrid(heightVal, widthVal) {
 
@@ -21,5 +36,14 @@ function makeGrid(heightVal, widthVal) {
         }
     }
 
-}
+    $('td').mousedown(function addColor(){
+        color = $('#colorPicker').val();
+
+        if($(this).attr('style')){
+            $(this).removeAttr('style')
+        } else {
+            $(this).attr('style', 'background-color:' + color);
+        }
+    })
     
+    }
